@@ -1,0 +1,50 @@
+#include <stdio.h>
+
+/**
+ * main - 4 digit combo
+ * Description: combine 4 digits with 4  variables
+ * Return: success
+ */
+int main(void)
+{
+	int a, b, c, d;
+
+	a = 48;
+	while (a <= 57)
+	{
+		b = 48;
+		while (b < 48)
+		{
+			c = 48;
+			while (c <= 57)
+			{
+				d  = 48;
+				while (d <= 57)
+				{
+				
+				
+				putchar(a);
+				putchar(b);
+				putchar(' ');
+				putchar(c);
+				putchar(d);
+				if (a == 57 && b == 56 && c == 57 && d ==  57)
+				{
+					putchar('\n');
+				}
+				else
+				{
+					putchar(',');
+					putchar(' ');
+				}
+				
+				d++;
+				}
+				c++;
+			}
+			b++;
+		}
+		a++;
+	}
+	return (0);
+}
