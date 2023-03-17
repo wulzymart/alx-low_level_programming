@@ -3,7 +3,7 @@
 /**
  * main - single unit numbers
  * Description: print out single unit base 10 numbers
- * Return: success
+ * Return: Success
  */
 
 int main(void)
@@ -13,6 +13,7 @@ int main(void)
 	while (n < 10)
 	{
 		printf("%i\n", n);
+		n++;
 	}
 	return (0);
 }
