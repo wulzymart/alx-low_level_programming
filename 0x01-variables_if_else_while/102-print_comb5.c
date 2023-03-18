@@ -8,44 +8,31 @@
 
 int main(void)
 {
-	int a, b, c, d;
+	int a, b;
 
-	a = '0';
-	while (a <= '9')
+	a = 0;
+	while (a <= 99)
 	{
-		b = '0';
-		while (b <= '9')
+		b = a;
+		while (b <= 99)
 		{
-		c = '0';
-		while (c <= '9')
-		{
-			d = '0';
-			while (d <= '9')
+			if (a != b)
 			{
-			if (a <= c && b < d)
-			{
-			putchar(a);
-			putchar(b);
-			putchar(' ');
-			putchar(c);
-			putchar(d);
-			if (a == '9' && b == '8' && c == '9' && d == '9')
-			{
-			putchar('\n');
+				putchar(a / 10 + 48);
+				putchar(a % 10 + 48);
+				putchar(' ');
+				putchar(b / 10 + 48);
+				putchar(b % 10 + 48);
+				if (!(a == 98 && b == 99))
+				{
+					putchar(',');
+					putchar(' ');
+				}
 			}
-			else
-			{
-			putchar(',');
-			putchar(' ');
-			}
-			}
-			d++;
-			}
-			c++;
-		}
-		b++;
+			b++;
 		}
 		a++;
 	}
+	putchar('\n');
 	return (0);
 }
