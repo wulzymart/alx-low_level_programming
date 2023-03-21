@@ -27,6 +27,21 @@ void print_number(int n)
 }
 
 /**
+ * seperation - seperate numbers
+ * @n: number to be printed after
+ * Return: void
+ */
+
+void seperation(int n)
+{
+	if (n != 98)
+	{
+		_putchar(',');
+		_putchar(' ');
+	}
+}
+
+/**
  * print_to_98 - print from number to 98
  * Description: print from any number to 98
  * @n: start from
@@ -40,7 +55,6 @@ void print_to_98(int n)
 		print_number(98);
 	}
 	else
-	/** handle less than 98 */
 	if (n < 98)
 	{
 		while (n <= 98)
@@ -52,11 +66,7 @@ void print_to_98(int n)
 			}
 			else
 				print_number(n);
-			if  (n != 98)
-			{
-				_putchar(',');
-				_putchar(' ');
-			}
+			seperation(n);
 			n++;
 		}
 	}
@@ -65,12 +75,9 @@ void print_to_98(int n)
 			while (n >= 98)
 			{
 				print_number(n);
-				if (n != 98)
-				{
-					_putchar(',');
-					_putchar(' ');
-				}
+				seperation(n);
 				n--;
 			}
 	}
+	_putchar('\n');
 }
