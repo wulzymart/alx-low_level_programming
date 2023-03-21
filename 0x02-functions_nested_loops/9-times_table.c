@@ -27,8 +27,11 @@ void times_table(void)
 				_putchar(' ');
 				_putchar(m + '0');
 			}
+			if (y != 9)
+			{
 			_putchar(',');
 			_putchar(' ');
+			}
 			y++;
 		}
 		_putchar('\n');
