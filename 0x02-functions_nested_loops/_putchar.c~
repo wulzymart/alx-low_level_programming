@@ -1,0 +1,12 @@
+#include <stdio.h>
+/**
+ * main - putchar function
+ * Description function for _putchar
+ * Return: success
+ */
+
+int _putchar(char n)
+{
+	putchar(n);
+	return (0);
+}
