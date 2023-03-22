@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+/**
+ * main - main function
+ * Description: sum of fibunacci numbers less than 4000000 which are even
+ * Return: 0;
+ */
+
+int main(void)
+{
+	long a, b, c, sum;
+
+	a = 0;
+	b = 1;
+	sum = 0;
+	while (c < 4000000)
+	{
+		c = a + b;
+		a = b;
+		b = c;
+		if (c % 2 == 0)
+			sum += c;
+	}
+	printf("%lu\n", sum);
+	return (0);
+}
