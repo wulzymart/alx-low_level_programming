@@ -9,10 +9,10 @@
 int main(void)
 {
 	long a, b, c, sum;
+	int sum = 0;
 
 	a = 0;
 	b = 1;
-	sum = 0;
 	while (c < 4000000)
 	{
 		c = a + b;
@@ -21,6 +21,6 @@ int main(void)
 		if (c % 2 == 0)
 			sum += c;
 	}
-	printf("%lu\n", sum);
+	printf("%d\n", sum);
 	return (0);
 }
