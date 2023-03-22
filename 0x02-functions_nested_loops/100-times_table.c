@@ -9,10 +9,17 @@ int digit_count(int n)
 {
 	int count = 0;
 
+	if (n = 0)
+	{
+		count = 1;
+	}
+	else
+	{
 	while (n > 0)
 	{
 		count++;
 		n = n / 10;
+	}
 	}
 	return (count);
 }
@@ -48,15 +55,13 @@ void print_number(int n)
 /**
  * align - aligns digits
  * @n: number to be printed
- * @z:  maximum number
  * Return: void
  */
 
-void align(int n, int z)
+void align(int n)
 {
 	int a  = digit_count(n);
-	int b = digit_count(z);
-	int s = b - a;
+	int s = 3 - a;
 
 	while (s > 0)
 	{
@@ -86,7 +91,7 @@ void print_times_table(int n)
 				int m = i * j;
 
 				if (j > 0)
-					align(m, n * n);
+					align(m);
 				print_number(m);
 				if (j != n)
 				{
