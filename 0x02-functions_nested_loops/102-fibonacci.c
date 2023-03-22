@@ -8,17 +8,17 @@
 
 int main(void)
 {
-	int a, b, c, i;
+	long a, b, c;
+	int i = 0;
 
 	a = 0;
 	b = 1;
-	i = 0;
 	while (i < 50)
 	{
 		c = a + b;
 		a = b;
 		b = c;
-		printf("%d", c);
+		printf("%lu", c);
 		if (i < 49)
 			printf(", ");
 		i++;
