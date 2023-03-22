@@ -85,7 +85,7 @@ void print_times_table(int n)
 			{
 				int m = i * j;
 
-				if (j != 0)
+				if (j > 0)
 					align(m, n * n);
 				print_number(m);
 				if (j != n)
