@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include "main.h"
 /**
  * main - Fizz Buzz function
  * Description: Fizz Buzz challenge from 1 to 100
