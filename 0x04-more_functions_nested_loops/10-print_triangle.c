@@ -19,18 +19,18 @@ void print_triangle(int size)
 			k = 0;
 			while (j > 1)
 			{
-				putchar(' ');
+				_putchar(' ');
 				j--;
 			}
 			while (k <= i)
 			{
-				putchar('#');
+				_putchar('#');
 				k++;
 			}
-			putchar('\n');
+			_putchar('\n');
 			i++;
 		}
 	}
 	else
-		putchar('\n');
+		_putchar('\n');
 }
