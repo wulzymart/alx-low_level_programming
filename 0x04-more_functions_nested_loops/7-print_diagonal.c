@@ -7,8 +7,8 @@
 
 void print_diagonal(int n)
 {
-	if (n < 1)
-		return;
+	if (n > 0)
+	{
 	int x, y;
 
 	x = 0;
@@ -22,5 +22,6 @@ void print_diagonal(int n)
 		}
 		_putchar('\n');
 		x++;
+	}
 	}
 }
