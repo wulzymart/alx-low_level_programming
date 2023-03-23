@@ -28,4 +28,5 @@ int main(void)
 		n != 100 ? putchar(' ') : putchar('\n');
 		n++;
 	}
+	return (0);
 }
