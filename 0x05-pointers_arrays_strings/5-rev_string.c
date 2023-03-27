@@ -25,7 +25,7 @@ const char *rev_copy(char *s)
 {
 	int i = _strlen(s);
 	int j = 0;
-	char d[80];
+	char d[1000];
 	char *c = d;
 
 	while (i > 0)
