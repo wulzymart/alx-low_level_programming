@@ -16,6 +16,30 @@ int _strlen(char *s)
 }
 
 /**
+ * rev_copy - returns a copy of string in reverse
+ * @s: string to print
+ * Return: string
+ */
+
+const char *rev_copy(char *s)
+{
+	int i = _strlen(s);
+	int j = 0;
+	char d[1000];
+	char *c = d;
+
+	while (i > 0)
+	{
+		*(c + j) = *(s + i - 1);
+		i--;
+		j++;
+	}
+
+
+	return (c);
+}
+
+/**
  * rev_string - reverse a string value
  * @s: string to be reversed
  * Return: void
@@ -24,16 +48,12 @@ int _strlen(char *s)
 void rev_string(char *s)
 {
 	int l = _strlen(s);
-	int i = l - 1;
-	int j = 0;
-	char tmp;
+	const char *cpy = rev_copy(s);
+	int i = 0;
 
-	while (i > j)
+	while (i < l)
 	{
-		tmp = *(s + j);
-		*(s + j) = *(s + i);
-		*(s + i) = tmp;
-		i--;
-		j++;
+		*(s + i) = *(cpy + i);
+		i++;
 	}
 }
