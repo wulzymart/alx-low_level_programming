@@ -17,9 +17,10 @@ int main(void)
 	while (check > 122)
 	{
 		n = rand() % 75;
-		putchar(n +48);
+		putchar(n + 48);
 		check -= (n + 48);
 	}
 	if (check > 0)
 		putchar(check);
+	return (0);
 }
