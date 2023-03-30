@@ -19,7 +19,7 @@ int _strlen(char *s)
 
 /**
  * revstr - reverse a string
- * @s: string to reverse
+ * @n: string to reverse
  * Return: void
  */
 
@@ -63,7 +63,7 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 	while (l1 >= 0 || l2 >= 0 || rem == 1)
 	{
 		int a = l1 < 0 ? 0 : *(n1 + l1) - '0';
-		int b = l2 < 0 ? 0 : *(n2+ l2) - '0';
+		int b = l2 < 0 ? 0 : *(n2 + l2) - '0';
 		int c = a + b + rem;
 
 		if (i >= size_r - 1)
