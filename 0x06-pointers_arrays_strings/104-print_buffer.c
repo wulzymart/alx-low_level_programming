@@ -16,7 +16,7 @@ void print_hexes(char *s, int l, int n)
 
 	while (i < 10)
 	{
-		i <= n ? printf("%02x", s[(l * 10) + i]) : printf("  ");
+		i < n ? printf("%02x", s[(l * 10) + i]) : printf("  ");
 		if (i % 2 != 0)
 			putchar(' ');
 		i++;
