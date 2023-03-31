@@ -70,6 +70,8 @@ void printline(char *s, int l, int n)
 
 void print_buffer(char *b, int size)
 {
+	if (size > 0)
+	{
 	int i = 0;
 	int k = (size - 1) / 10;
 
@@ -83,7 +85,7 @@ void print_buffer(char *b, int size)
 		putchar('\n');
 		i++;
 	}
-
-	if (size <= 0)
+	}
+	else
 		putchar('\n');
 }
