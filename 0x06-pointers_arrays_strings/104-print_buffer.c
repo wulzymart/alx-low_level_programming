@@ -1,90 +1,58 @@
-#include <stdlib.h>
-#include <stdio.h>
 #include "main.h"
-
+#include <stdio.h>
 /**
- * print_hexes - print hex values with 2 bytes
- * @s: string being printed
- * @l: line being printed
- * @n: number of charcters to be printed
+ * print_line - prints a s bytes of a buffer
+ * @c: buffer to print
+ * @s: bytes of buffer to print
+ * @l: line of buffer to print
+ *
  * Return: void
  */
 
-void print_hexes(char *s, int l, int n)
+void print_line(char *c, int s, int l)
 {
-	int i = 0;
-
-	while (i < 10)
-	{
-		i <= n ? printf("%02x", s[(l * 10) + i]) : printf("  ");
-		if (i % 2 != 0)
-			putchar(' ');
-		i++;
-	}
+int j, k;
+for (j = 0; j <= 9; j++)
+{
+if (j <= s)
+printf("%02x", c[l * 10 + j]);
+else
+printf("  ");
+if (j % 2)
+putchar(' ');
 }
-/**
- * printchars - print characters
- * @s: string being printed
- * @l: line being printed
- * @n: number of charcters to be printed
- */
-void printchars(char *s, int l, int n)
+for (k = 0; k <= s; k++)
 {
-	int i = 0;
-
-	while (i < n)
-	{
-		(s[l * 10 + i] >= ' ' && s[l * 10 + i] <= 126)
-			?
-			putchar(s[l * 10 + i])
-			:
-			putchar('.');
-		i++;
-	}
+if (c[l * 10 + k] > 31 && c[l * 10 + k] < 127)
+putchar(c[l * 10 + k]);
+else
+putchar('.');
+}
 }
 
 /**
- * printline - print the line after the buffer
- * @s: buffer string
- * @l: line being printed
- * @n: number of charcters to be printed
+ * print_buffer - prints a buffer
+ * @b: buffer to print
+ * @size: size of buffer
+ *
  * Return: void
  */
-
-void printline(char *s, int l, int n)
-{
-	print_hexes(s, l, n);
-	printchars(s, l, n);
-}
-
-/**
- * print_buffer - prints an int bytes of a buffer
- * @size: size to print
- * @b: string buffer to be printed
- * Description: Output will be 10 bytes per line
- * Return: void
- */
-
 void print_buffer(char *b, int size)
 {
-	if (size > 0)
-	{
-	int i = 0;
-	int k = (size - 1) / 10;
-
-	while (i <= k)
-	{
-		printf("%08x: ", i * 10);
-		if (i < size / 10)
-			printline(b, i, 10);
-		else
-			printline(b, i, size % 10);
-		putchar('\n');
-		if (i >= size)
-			continue;
-		i++;
-	}
-	}
-	else
-		putchar('\n');
+int i;
+for (i = 0; i <= (size - 1) / 10 && size; i++)
+{
+printf("%08x: ", i * 10);
+if (i < size / 10)
+{
+print_line(b, 9, i);
+}
+else
+{
+print_line(b, size % 10 - 1, i);
+}
+putchar('\n');
+}
+if (size == 0)
+putchar('\n');
 }
