@@ -80,6 +80,8 @@ void print_buffer(char *b, int size)
 		else
 			printline(b, i, size % 10);
 		putchar('\n');
+		if (i >= size)
+			continue;
 		i++;
 	}
 	}
