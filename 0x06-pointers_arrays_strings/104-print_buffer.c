@@ -36,8 +36,7 @@ void printchars(char *s, int l, int n)
 	{
 		if (i < n)
 		{
-			!((s[l * 10 + i] >= 0 && s[l * 10 + i] < ' ') ||
-			  s[l * 10 + i] == 127)
+			(s[l * 10 + i] >= ' ' && s[l * 10 + i] <= 126)
 				?
 				putchar(s[l * 10 + i])
 				:
