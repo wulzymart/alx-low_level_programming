@@ -69,16 +69,15 @@ void print_buffer(char *b, int size)
 {
 	int i;
 
-		for (i = 0; i <= (size - 1) / 10 && size > 0; i++)
-		{
-			printf("%08x: ", i * 10);
-			if (i < size / 10)
-				printline(b, i, 10);
-			else
-				printline(b, i, size % 10);
-			putchar('\n');
-			i++;
-		}
+	for (i = 0; i <= (size - 1) / 10 && size > 0; i++)
+	{
+		printf("%08x: ", i * 10);
+		if (i < size / 10)
+			printline(b, i, 10);
+		else
+			printline(b, i, size % 10);
+		putchar('\n');
+	}
 
 	if (size <= 0)
 		putchar('\n');
