@@ -75,13 +75,10 @@ void print_buffer(char *b, int size)
 	while (i <= k)
 	{
 		printf("%08x: ", i * 10);
-		if (i < k)
+		if (i < size / 10)
 			printline(b, i, 10);
 		else
-			if (size % 10 == 0)
-				printline(b, i, 10);
-			else
-				printline(b, i, size % 10);
+			printline(b, i, size % 10);
 		putchar('\n');
 		i++;
 	}
