@@ -23,6 +23,7 @@ char *_strstr(char *haystack, char *needle)
 	{
 		j = 0;
 		found = 0;
+		i++;
 		while (needle[j] && haystack[i + j])
 		{
 			if (haystack[i + j] != needle[j])
@@ -35,7 +36,6 @@ char *_strstr(char *haystack, char *needle)
 		}
 		if (found)
 			return (haystack + i);
-		i++;
 	}
 	return (0);
 }
