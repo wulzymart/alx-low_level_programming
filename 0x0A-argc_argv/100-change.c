@@ -20,32 +20,33 @@ int main(int argc, char **argv)
 		return (1);
 	}
 	n = atoi(argv[1]);
-	if (n <= 0)
-		puts("0");
+	while (n > 0)
+	{
 	if (n >= 25)
 	{
 		change += n / 25;
 		n = n % 25;
 	}
-	if (n >= 10)
+	else if (n >= 10)
 	{
 		change += n / 10;
 		n = n % 10;
 	}
-	if (n >= 5)
+	else if (n >= 5)
 	{
 		change += n / 5;
 		n = n % 5;
 	}
-	if (n >= 2)
+	else if (n >= 2)
 	{
 		change += n / 2;
 		n = n % 2;
 	}
-	if (n >= 1)
+	else if (n >= 1)
 	{
 		change += n / 1;
 		n = n % 1;
+	}
 	}
 
 	printf("%d\n", change);
