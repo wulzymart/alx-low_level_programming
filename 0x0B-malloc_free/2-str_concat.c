@@ -11,8 +11,6 @@ int _strlen(char *str)
 {
 	int i = 0;
 
-	if (str == NULL)
-		return (0);
 	while (str[i])
 		i++;
 	return (i);
@@ -28,13 +26,16 @@ int _strlen(char *str)
 
 char *str_concat(char *s1, char *s2)
 {
-	int l1 = _strlen(s1);
-	int l2 = _strlen(s2);
-	int i = 0;
+	int l1, l2, i;
 	char *s;
 
-	if (l1 == 0 && l2 == 0)
-		return (NULL);
+	if (s1 == NULL)
+		s1 = "";
+	if (s2 == NULL)
+		s2 = "";
+	l1 = _strlen(s1);
+	l2 = _strlen(s2);
+	i = 0
 
 	s = malloc(sizeof(char) * (l1 + l2 + 1));
 
