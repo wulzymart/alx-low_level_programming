@@ -20,6 +20,29 @@ int _strlen(char *str)
 }
 
 /**
+ * _calloc - allocates memory for an array, using malloc
+ * @nmemb: number of array members
+ * @size: size of member elements
+ * Return: NULL if it fails and pointer to the allocated memory if it success.
+ */
+
+void *_calloc(unsigned int nmemb, unsigned int size)
+{
+	char *ptr;
+	unsigned int i, s;
+
+	if (size == 0 || nmemb == 0)
+		return (NULL);
+	s = nmemb * size;
+	ptr = malloc(s);
+	if (ptr == NULL)
+		return (NULL);
+	for (i = 0; i < s; i++)
+		ptr[i] = 0;
+	return (ptr);
+}
+
+/**
  * pos_num - checks if a string is positive number
  * @str: string to check
  * Return: 1 if true 0 if false
@@ -66,11 +89,9 @@ int main(int argc, char **argv)
 	l1 = _strlen(argv[1]);
 	l2 = _strlen(argv[2]);
 	l = l1 + l2;
-	res = malloc(sizeof(int) * (l + 1));
+	res = _calloc(l + 1, 1);
 	if (res == NULL)
-		return (1);
-	for (i = 0; i <= l; i++)
-		res[i] = 0;
+		error();
 	for (l1--; l1 >= 0; l1--)
 	{
 		n1 = argv[1][l1] - '0';
@@ -82,8 +103,8 @@ int main(int argc, char **argv)
 			res[l1 + l2 + 1] = rem % 10;
 			rem /= 10;
 		}
-		if (rem > 0)
-			res[l1 + l2 + 1] += rem;
+		res[l1 + l2 + 1] = !rem ? res[l1 + l2 + 1] :
+		res[l1 + l2 + 1] + rem;
 	}
 	for (i = 0, j = 0; i < l; i++)
 	{
