@@ -88,8 +88,8 @@ int main(int argc, char **argv)
 	l = l1 + l2;
 	res = _calloc(l + 1, 1);
 	if (res == NULL)
-		error();
-	l1--;
+		return (1);;
+	l1 = l1 - 1;
 	for (; l1 >= 0; l1--)
 	{
 		n1 = argv[1][l1] - '0';
@@ -107,11 +107,11 @@ int main(int argc, char **argv)
 	for (i = 0, j = 0; i < l; i++)
 	{
 		if (res[i] > 0)
-			j++;
-		if (j > 0)
+			j = 1;
+		if (j)
 			_putchar(res[i] + '0');
 	}
-	if (j == 0)
+	if (!j)
 		_putchar('0');
 	_putchar('\n');
 	free(res);
