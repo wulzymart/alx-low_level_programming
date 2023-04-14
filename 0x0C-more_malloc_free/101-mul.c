@@ -82,7 +82,7 @@ void error(void)
 int main(int argc, char **argv)
 {
 	char *res;
-	int l1, l2, l, rem, n1, n2, i;
+	int l1, l2, l, rem, n1, n2, i, j;
 
 	if (argc != 3 || !pos_num(argv[1]) || !pos_num(argv[2]))
 		error();
@@ -106,12 +106,15 @@ int main(int argc, char **argv)
 		res[l1 + l2 + 1] = !rem ? res[l1 + l2 + 1] :
 		res[l1 + l2 + 1] + rem;
 	}
-	for (i = 0; i < l; i++)
+	for (i = 0, j = 0; i < l; i++)
 	{
-		if (i == 0 && res[i] == 0)
-			continue;
-		_putchar(res[i] + '0');
+		if (res[i] > 0)
+			j ++;
+		if (j > 0)
+			_putchar(res[i] + '0');
 	}
+	if (j == 0)
+		_putchar('0');
 	_putchar('\n');
 	free(res);
 	return (0);
