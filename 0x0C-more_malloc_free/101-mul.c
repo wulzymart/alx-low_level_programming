@@ -11,9 +11,6 @@ int _strlen(char *str)
 {
 	int i = 0;
 
-	if (str == NULL)
-		return (0);
-
 	while (str[i])
 		i++;
 	return (i);
@@ -50,7 +47,7 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 
 int pos_num(char *str)
 {
-	unsigned int i;
+	int i;
 
 	for (i = 0; str[i]; i++)
 		if (str[i] < '0' || str[i] > '9')
@@ -92,7 +89,8 @@ int main(int argc, char **argv)
 	res = _calloc(l + 1, 1);
 	if (res == NULL)
 		error();
-	for (l1--; l1 >= 0; l1--)
+	l1--;
+	for (; l1 >= 0; l1--)
 	{
 		n1 = argv[1][l1] - '0';
 		rem = 0;
