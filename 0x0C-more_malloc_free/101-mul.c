@@ -91,7 +91,7 @@ int main(int argc, char **argv)
 	l = l1 + l2;
 	res = _calloc(l + 1, 1);
 	if (res == NULL)
-		return (98);
+		return (1);
 	for (l1--; l1 >= 0; l1--)
 	{
 		n1 = argv[1][l1] - '0';
@@ -99,7 +99,7 @@ int main(int argc, char **argv)
 		for (l2 = _strlen(argv[2]) - 1; l2 >= 0; l2--)
 		{
 			n2 = argv[2][l2] - '0';
-			rem = res[l1 + l2 + 1] + n1 * n2;
+			rem += res[l1 + l2 + 1] + n1 * n2;
 			res[l1 + l2 + 1] = rem % 10;
 			rem /= 10;
 		}
