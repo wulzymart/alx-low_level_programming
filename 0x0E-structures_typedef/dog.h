@@ -4,8 +4,8 @@
 /**
  * struct dog - dog structure
  * @name: name of dog
- * @ age: age of dog
- * @ owner: owners name
+ * @age: age of dog
+ * @owner: owners name
  */
 
 struct dog
