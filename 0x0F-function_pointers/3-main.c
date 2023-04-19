@@ -20,7 +20,7 @@ int main(int ac, char **av)
 	}
 	a = atoi(av[1]);
 	b = atoi(av[3]);
-	if (strlen(av[2]) > 1 ||get_op_func(av[2]) == NULL)
+	if (get_op_func(av[2]) == NULL)
 	{
 		puts("Error");
 		exit(99);
@@ -30,5 +30,6 @@ int main(int ac, char **av)
 		puts("Error");
 		exit(100);
 	}
-	return ((get_op_func(av[2]))(a, b));
+	printf("%d\n", get_op_func(av[2])(a, b));
+	return (0);
 }
