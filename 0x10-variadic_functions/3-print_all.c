@@ -13,32 +13,32 @@ void print_all(const char * const format, ...)
 	char *s;
 
 	va_start(args, format);
-	while (format != NULL && format[i])
+	while (format && format[i])
 	{
 		switch (format[i])
 		{
 		case 'c':
-			if (j)
-				printf(", ");
+			switch (j)
+			{case 1: printf(", "); }
 			putchar(va_arg(args, int));
 			j = 1;
 		break;
 		case 'i':
-			if (j)
-				printf(", ");
+			switch (j)
+			{case 1: printf(", "); }
 			printf("%d", (va_arg(args, int)));
 			j = 1;
 		break;
 		case 'f':
-			if (j)
-				printf(", ");
+			switch (j)
+			{case 1: printf(", "); }
 			printf("%f", (va_arg(args, double)));
 			j = 1;
 		break;
 		case 's':
 			s = va_arg(args, char *);
-			if (j)
-				printf(", ");
+			switch (j)
+			{case 1:printf(", "); }
 			printf("%s", s == NULL ? "(nil)" : s);
 			j = 1;
 		break;
