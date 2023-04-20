@@ -9,14 +9,14 @@
 
 int sum_them_all(const unsigned int n, ...)
 {
-	int sum = 0;
+	int sum;
 	va_list args;
 	unsigned int i;
 
 	if (!n)
 		return (0);
 	va_start(args, n);
-	for (i = 0; i < n; i++)
+	for (i = 0, sum = 0; i < n; i++)
 	{
 		sum += va_arg(args, int);
 	}
