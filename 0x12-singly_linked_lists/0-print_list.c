@@ -11,20 +11,12 @@ size_t print_list(const list_t *h)
 
 	while (h)
 	{
-		char *s;
-		unsigned int l;
-
-		s = h->str;
-		l = h->len;
 		if (!h->str)
-		{
-			s = "(nil)";
-			l = 0;
-		}
-
-		printf("[%u] %s\n", l, s);
-		n++;
+			printf("[0] (nil)\n");
+		else
+			printf("[%u] %s\n", h->len, h->str);
 		h = h->next;
+		n++;
 	}
 	return (n);
 }
