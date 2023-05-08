@@ -10,19 +10,31 @@ void printerr97(void)
 /**
  * printerr98 - print error 87
  * @str: arguement string
+ * @fd1: file descriptor 1
+ * @fd2: file descriptor 2
 */
-void printerr98(char *str)
+void printerr98(char *str, int fd1, int fd2)
 {
 	dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", str);
+	if (fd1 != -1)
+		close(fd1);
+	if (fd2 != -1)
+		close(fd2);
 	exit(98);
 }
 /**
  * printerr99 - print error 87
  * @str: arguement string
+ * @fd1: file descriptor 1
+ * @fd2: file descriptor 2
 */
-void printerr99(char *str)
+void printerr99(char *str, int fd1, int fd2)
 {
 	dprintf(STDERR_FILENO, "Error: Can't write to file %s\n", str);
+	if (fd1 != -1)
+		close(fd1);
+	if (fd2 != -1)
+		close(fd2);
 	exit(99);
 }
 /**
@@ -33,7 +45,7 @@ void printerr99(char *str)
 */
 int main(int ac, char **av)
 {
-	int a = 0, b = 0, d, e, fd1, fd2;
+	int a = 0, b = 0, d, e, fd1 = -1, fd2 = -1;
 	char buff[1024];
 
 	if (ac != 3)
@@ -47,10 +59,10 @@ int main(int ac, char **av)
 	do {
 		e = read(fd1, buff, 1024);
 		if (e == -1)
-			printerr98(av[1]);
+			printerr98(av[1], fd1, fd2);
 		d = write(fd2, buff, e);
 		if (d != e)
-			printerr99(av[2]);
+			printerr99(av[2], fd1, fd2);
 	} while (e != 0);
 	a = close(fd1);
 	b = close(fd2);
