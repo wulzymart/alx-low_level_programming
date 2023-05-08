@@ -58,6 +58,12 @@ int main(int ac, char **av)
 	{
 		if (fd2 == -1 || (write(fd2, buff, e) != e))
 			printerr99(av[2], fd1, fd2);
+		if (close(fd2) == -1)
+		{
+			dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd2);
+			exit(100);
+		}
+		fd2 = open(av[2], O_WRONLY | O_APPEND);
 	}
 	if (e == -1)
 		printerr98(av[1], fd1, fd2);
