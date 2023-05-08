@@ -1,6 +1,6 @@
 #include "main.h"
 /**
- * printerr97 - print error 87
+ * printerr97 - print error 97
 */
 void printerr97(void)
 {
@@ -8,7 +8,7 @@ void printerr97(void)
 	exit(97);
 }
 /**
- * printerr98 - print error 87
+ * printerr98 - print error 98
  * @str: arguement string
  * @fd1: file descriptor 1
  * @fd2: file descriptor 2
@@ -23,14 +23,14 @@ void printerr98(char *str, int fd1, int fd2)
 	exit(98);
 }
 /**
- * printerr99 - print error 87
+ * printerr99 - print error 99
  * @str: arguement string
  * @fd1: file descriptor 1
  * @fd2: file descriptor 2
 */
 void printerr99(char *str, int fd1, int fd2)
 {
-	dprintf(STDERR_FILENO, "Error: Can't write to file %s\n", str);
+	dprintf(STDERR_FILENO, "Error: Can't write to %s\n", str);
 	if (fd1 != -1)
 		close(fd1);
 	if (fd2 != -1)
