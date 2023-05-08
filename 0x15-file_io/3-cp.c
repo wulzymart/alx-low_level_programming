@@ -53,7 +53,7 @@ int main(int ac, char **av)
 	fd1 = open(av[1], O_RDONLY);
 	if (fd1 == -1)
 		printerr98(av[1], fd1, fd2);
-	fd2 = open(av[2], O_CREAT | O_WRONLY | O_TRUNC, O_APPEND, 0664);
+	fd2 = open(av[2], O_CREAT | O_WRONLY | O_TRUNC | O_APPEND, 0664);
 	while ((e = read(fd1, buff, 1024)) > 0)
 	{
 		if (fd2 == -1 || (write(fd2, buff, e) != e))
