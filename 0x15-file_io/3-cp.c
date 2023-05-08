@@ -68,7 +68,10 @@ int main(int ac, char **av)
 	b = close(fd2);
 	if (a == -1 || b == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", a != 0 ? a : b);
+		if (a == -1)
+			dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", a);
+		if (a == -1)
+			dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", a);
 		exit(100);
 	}
 	return (0);
