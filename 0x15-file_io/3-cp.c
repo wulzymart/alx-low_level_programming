@@ -52,10 +52,10 @@ int main(int ac, char **av)
 		printerr97();
 	fd1 = open(av[1], O_RDONLY);
 	if (fd1 == -1)
-		printerr98(av[1]);
+		printerr98(av[1], fd1, fd2);
 	fd2 = open(av[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 	if (fd2 == -1)
-		printerr99(av[2]);
+		printerr99(av[2], fd1, fd2);
 	do {
 		e = read(fd1, buff, 1024);
 		if (e == -1)
