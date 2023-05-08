@@ -45,7 +45,7 @@ void printerr99(char *str, int fd1, int fd2)
 */
 int main(int ac, char **av)
 {
-	int a = 0, b = 0, d, e, fd1 = -1, fd2 = -1;
+	int a, b, e, fd1 = -1, fd2 = -1;
 	char buff[1024];
 
 	if (ac != 3)
@@ -54,12 +54,9 @@ int main(int ac, char **av)
 	if (fd1 == -1)
 		printerr98(av[1], fd1, fd2);
 	fd2 = open(av[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
-	if (fd2 == -1)
-		printerr99(av[2], fd1, fd2);
 	while ((e = read(fd1, buff, 1024)) > 0)
 	{
-		d = write(fd2, buff, e);
-		if (d != e)
+		if (fd2 == -1 || (write(fd2, buff, e) != e))
 			printerr99(av[2], fd1, fd2);
 	}
 	if (e == -1)
