@@ -56,14 +56,14 @@ int main(int ac, char **av)
 	fd2 = open(av[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 	if (fd2 == -1)
 		printerr99(av[2], fd1, fd2);
-	do {
-		e = read(fd1, buff, 1024);
-		if (e == -1)
-			printerr98(av[1], fd1, fd2);
+	while ((e = read(fd1, buff, 1024)) > 0)
+	{
 		d = write(fd2, buff, e);
 		if (d != e)
 			printerr99(av[2], fd1, fd2);
-	} while (e != 0);
+	}
+	if (e == -1)
+		printerr98(av[1], fd1, fd2);
 	a = close(fd1);
 	b = close(fd2);
 	if (a == -1 || b == -1)
