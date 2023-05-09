@@ -237,6 +237,15 @@ void print_type(unsigned int type, unsigned char *s)
 	}
 }
 /**
+ * print_add- prints Entry point address
+ * @add: ElfN_Addr e_entry;
+*/
+void print_add(unsigned long add)
+{
+	printf("  %-35s", "Entry point address:");
+	printf("%#lx\n", add);
+}
+/**
  * main - program that prints ELF header
  * @av: arguement vector
  * @ac: arguement count
@@ -267,6 +276,7 @@ int main(int ac, char **av)
 	print_version(h->e_ident);
 	print_osabi(h->e_ident);
 	print_type(h->e_type, h->e_ident);
+	print_add(h->e_entry);
 	free(h);
 	close(fd);
 	return (0);
