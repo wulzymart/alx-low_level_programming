@@ -192,7 +192,7 @@ void print_osabi(unsigned char *s)
 		printf("Standalone App\n");
 		break;
 	default:
-		printf("<unknown: %x>\n", s[EI_OSABI]);
+		printf("\n");
 	}
 }
 /**
@@ -239,11 +239,15 @@ void print_type(unsigned int type, unsigned char *s)
 /**
  * print_add- prints Entry point address
  * @add: ElfN_Addr e_entry;
+ * @s: elf e_indent character array
 */
-void print_add(unsigned long add)
+void print_add(unsigned long add, unsigned char *s)
 {
 	printf("  %-35s", "Entry point address:");
-	printf("%#lx\n", add);
+	if (s[EI_CLASS] == ELFCLASS32)
+		printf("%#x\n", (unsigned int)add);
+	else
+		printf("%#lx\n", add);
 }
 /**
  * main - program that prints ELF header
@@ -275,8 +279,9 @@ int main(int ac, char **av)
 	print_data(h->e_ident);
 	print_version(h->e_ident);
 	print_osabi(h->e_ident);
+	print_abi(h->e_ident);
 	print_type(h->e_type, h->e_ident);
-	print_add(h->e_entry);
+	print_add(h->e_entry, h->e_ident);
 	free(h);
 	close(fd);
 	return (0);
