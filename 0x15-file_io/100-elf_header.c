@@ -213,7 +213,7 @@ void print_type(unsigned int type, unsigned char *s)
 {
 	printf("  %-35s", "Type:");
 	/*if big endianed remove the first byte*/
-	if (s[EI_DATA == ELFDATA2MSB])
+	if (s[EI_DATA] == ELFDATA2MSB)
 		type = type >> 8;
 	switch (type)
 	{
