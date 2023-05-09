@@ -244,6 +244,13 @@ void print_type(unsigned int type, unsigned char *s)
 void print_add(unsigned long add, unsigned char *s)
 {
 	printf("  %-35s", "Entry point address:");
+	if (s[EI_DATA] == ELFDATA2MSB)
+	{
+		add = ((add & 0x0000FFFF0000FFFF) << 16) |
+		((add & 0xFFFF0000FFFF0000) >> 16);
+		add = ((add & 0x00FF00FF00FF00FF) << 8) |
+		((add & 0xFF00FF00FF00FF00) >> 8);
+	}
 	if (s[EI_CLASS] == ELFCLASS32)
 		printf("%#x\n", (unsigned int)add);
 	else
