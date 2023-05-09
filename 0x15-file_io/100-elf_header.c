@@ -1,23 +1,32 @@
-#include <elf.h>
 #include "main.h"
 /**
  * print_err_usg - prints usage error
 */
 void print_err_usg(void)
 {
-	dprintf(STDERR_FILENO, "Error: elf_header elf_filename");
+	dprintf(STDERR_FILENO, "Error: Usage elf_header elf_filename\n");
 	exit(98);
 }
 /**
  * print_f_acc_err - prints file access error
  * @fd: file descriptor
+*/
+void print_f_acc_err(int fd)
+{
+	dprintf(STDERR_FILENO, "Error: unable to access file\n");
+	if (fd != -1)
+		close(fd);
+	exit(98);
+}
+/**
+ * print_f_acc_err_h - prints file access error
+ * @fd: file descriptor
  * @h: pointer to elf header struct
 */
-void print_f_acc_err(int fd, Elf64_Ehdr *h)
+void print_f_acc_errh(int fd, Elf64_Ehdr *h)
 {
-	dprintf(STDERR_FILENO, "Error: unable to access file");
-	if (h)
-		free(h);
+	dprintf(STDERR_FILENO, "Error: unable to access file\n");
+	free(h);
 	if (fd != -1)
 		close(fd);
 	exit(98);
@@ -28,7 +37,7 @@ void print_f_acc_err(int fd, Elf64_Ehdr *h)
 */
 void print_mem_alloc_err(int fd)
 {
-	dprintf(STDERR_FILENO, "Error: unable to allocate meory");
+	dprintf(STDERR_FILENO, "Error: unable to allocate memory\n");
 	close(fd);
 	exit(98);
 }
@@ -51,7 +60,7 @@ int iself(unsigned char *e_indent)
 */
 void print_not_elf(int fd, Elf64_Ehdr *h)
 {
-	dprintf(STDERR_FILENO, "Error: Not an elf file");
+	dprintf(STDERR_FILENO, "Error: Not an elf file\n");
 	if (h)
 		free(h);
 	if (fd != -1)
@@ -82,7 +91,7 @@ void print_mag_num(unsigned char *s)
 */
 void print_class(unsigned char *s)
 {
-	printf("  %35s", "Class:");
+	printf("  %-35s", "Class:");
 
 	switch (s[EI_CLASS])
 	{
@@ -105,7 +114,7 @@ void print_class(unsigned char *s)
 */
 void print_data(unsigned char *s)
 {
-	printf("  %35s", "Data:");
+	printf("  %-35s", "Data:");
 
 	switch (s[EI_DATA])
 	{
@@ -128,7 +137,7 @@ void print_data(unsigned char *s)
 */
 void print_version(unsigned char *s)
 {
-	printf("  %35s", "Version:");
+	printf("  %-35s", "Version:");
 
 	switch (s[EI_VERSION])
 	{
@@ -148,7 +157,7 @@ void print_version(unsigned char *s)
 */
 void print_osabi(unsigned char *s)
 {
-	printf("  %35s", "OS/ABI:");
+	printf("  %-35s", "OS/ABI:");
 
 	switch (s[EI_OSABI])
 	{
@@ -192,8 +201,40 @@ void print_osabi(unsigned char *s)
 */
 void print_abi(unsigned char *s)
 {
-	printf("  %35s", "ABI Version:");
+	printf("  %-35s", "ABI Version:");
 	printf("%d\n", s[EI_ABIVERSION]);
+}
+/**
+ * print_type- prints type
+ * @type: e_type
+ * @s: elf e_indent character array
+*/
+void print_type(unsigned int type, unsigned char *s)
+{
+	printf("  %-35s", "Type:");
+	/*if big endianed remove the first byte*/
+	if (s[EI_DATA == ELFDATA2MSB])
+		type = type >> 8;
+	switch (type)
+	{
+	case ET_NONE:
+		printf("NONE (None)\n");
+		break;
+	case ET_REL:
+		printf("REL (Relocatable file)\n");
+		break;
+	case ET_EXEC:
+		printf("EXEC (Executable file)\n");
+		break;
+	case ET_DYN:
+		printf("DYN (Shared object file)\n");
+		break;
+	case ET_CORE:
+		printf("CORE (Core file)\n");
+		break;
+	default:
+		printf("<unknown: %x>\n", type);
+	}
 }
 /**
  * main - program that prints ELF header
@@ -203,28 +244,29 @@ void print_abi(unsigned char *s)
 */
 int main(int ac, char **av)
 {
-	Elf64_Ehdr *h = NULL;
+	Elf64_Ehdr *h;
 	int fd = -1, j;
 
 	if (ac != 2)
 		print_err_usg();
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
-		print_f_acc_err(fd, h);
+		print_f_acc_err(fd);
 	h = malloc(sizeof(Elf64_Ehdr));
 	if (!h)
 		print_mem_alloc_err(fd);
-	j = read(1, h, sizeof(Elf64_Ehdr));
+	j = read(fd, h, sizeof(Elf64_Ehdr));
 	if (j == -1)
-		print_f_acc_err(fd, h);
+		print_f_acc_errh(fd, h);
 	if (!iself(h->e_ident))
 		print_not_elf(fd, h);
-	print_mag_num(h->e_ident);
 	printf("ELF Header:\n");
+	print_mag_num(h->e_ident);
 	print_class(h->e_ident);
 	print_data(h->e_ident);
 	print_version(h->e_ident);
 	print_osabi(h->e_ident);
+	print_type(h->e_type, h->e_ident);
 	free(h);
 	close(fd);
 	return (0);
