@@ -19,7 +19,7 @@ void print_f_acc_err(int fd)
 	exit(98);
 }
 /**
- * print_f_acc_err_h - prints file access error
+ * print_f_acc_errh - prints file access error
  * @fd: file descriptor
  * @h: pointer to elf header struct
 */
