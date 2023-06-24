@@ -7,3 +7,4 @@ int atoi(const char *)
 	puts("Congratulations, you win the Jackpot!");
 	exit(EXIT_SUCCESS);
 }
+https://github.com/wulzymart/alx-low_level_programming/blob/master/0x18-dynamic_libraries/libatoi.so
