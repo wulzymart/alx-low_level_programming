@@ -1,17 +1,5 @@
 #include "hash_tables.h"
-/**
- * add_node - adds a new node at the beginning of hash table index.
- * @head: address of head of node
- * @new: new node to be added
- * Return: pointer to new head
- */
 
-hash_node_t *add_node(hash_node_t **head, hash_node_t *new)
-{
-	new->next = *head;
-	*head = new;
-	return (*head);
-}
 /**
  * hash_table_set - adds a new key paie to the hash table
  * @ht: address of hash table
@@ -25,7 +13,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	unsigned long index;	   /*hold index returned by hash function*/
 	char *key_cpy, *value_cpy; /*To hold copy of key and value*/
 
-	if (!ht || !key || !value)
+	if (!ht || !key || !*key || !value)
 		return (0);
 
 	new = malloc(sizeof(hash_node_t));
@@ -44,7 +32,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	index = key_index((const unsigned char *)key, ht->size);
 	new->key = key_cpy;
 	new->value = value_cpy;
-	new->next = NULL;
-	add_node(&(ht->array[index]), new);
+	new->next = ht->array[index];
+	ht->array[index] = new;
 	return (1);
 }
