@@ -13,7 +13,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	unsigned long index;	   /*hold index returned by hash function*/
 	char *key_cpy, *value_cpy; /*To hold copy of key and value*/
 
-	if (!ht || !key || !strcmp("", key) || !value)
+	if (!ht || !key || strlen(key) == 0 || strcmp("\n", key) == 0 || !value)
 		return (0);
 
 	new = malloc(sizeof(hash_node_t));
