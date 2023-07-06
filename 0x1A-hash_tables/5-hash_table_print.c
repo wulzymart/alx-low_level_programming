@@ -18,16 +18,14 @@ void hash_table_print(const hash_table_t *ht)
 			if (ht->array[i])
 			{
 				tmp = ht->array[i];
-				if (print_comma)
-					printf(", ");
 				while (tmp)
 				{
-					printf("'%s' : '%s'", tmp->key, tmp->value);
-					if (tmp->next)
+					if (print_comma)
 						printf(", ");
+					printf("'%s': '%s'", tmp->key, tmp->value);
 					tmp = tmp->next;
+					print_comma = 1;
 				}
-				print_comma = 1;
 			}
 		}
 		puts("}");
